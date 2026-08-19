@@ -1,20 +1,22 @@
 # Pillar — Landing Page
 
-Single-page marketing site for Pillar Overseas Education and Foreign Employment
-(Sri Lanka → Dubai training + placement pathway). Plain HTML/CSS/JS, no build step,
-no framework.
+Marketing site for Pillar Overseas Education and Foreign Employment (Sri Lanka
+→ Dubai training + placement pathway). Plain HTML/CSS/JS, no build step, no
+framework — a main landing page plus a handful of per-track detail pages.
 
 ## Project structure
 
 ```
-index.html        Page markup
-css/style.css      All styles
-js/config.js       Site-wide settings (WhatsApp number, lead sheet URL)
-js/main.js         WhatsApp link wiring + reserve-form validation + lead save
-assets/            Logo, track, and video files (see "Brand assets" below)
-apps-script/       Google Apps Script source for the lead-capture sheet
-netlify.toml       Netlify static-hosting config
-package.json       Dev-server script only (no runtime dependencies)
+index.html         Main landing page
+index-si.html       Sinhala translation of the landing page (see below)
+tracks/             One page per track — see "Track pages" below
+css/style.css        All styles, shared by every page
+js/config.js         Site-wide settings (WhatsApp number, lead sheet URL)
+js/main.js           WhatsApp link wiring + reserve-form validation + lead save + modal logic
+assets/              Logo, track, and video files (see "Brand assets" below)
+apps-script/         Google Apps Script source for the lead-capture sheet
+netlify.toml         Netlify static-hosting config
+package.json         Dev-server script only (no runtime dependencies)
 ```
 
 ## Brand assets
@@ -96,6 +98,38 @@ either a personal (non-Workspace) Google account or a Workspace admin enabling
 "Let users publish web apps that can be accessed by anyone" under Admin
 console → Apps → Google Workspace → Apps Script. Leave `leadSheetUrl` blank
 (the default) to keep this inactive.
+
+## Track pages
+
+Each track card on the main page is clickable through to its own page in
+`tracks/`:
+
+- `tracks/electrical.html`, `tracks/housekeeping.html` — full detail pages for
+  the two live tracks (curriculum modules, duration, requirements, the same
+  fee structure as the main page, and their own reserve modal pre-selecting
+  that track).
+- `tracks/plumbing.html`, `tracks/ac-technician.html` — minimal "coming soon"
+  stubs for the two not-yet-open tracks, linking back to the tracks that are
+  actually open.
+
+On the card itself, the photo/title area links to the detail page and the
+"Reserve this track" button still opens the reserve popup directly — two
+separate click targets on one card (see `.track-link` / `.track-cta` in
+`index.html`).
+
+**⚠️ The curriculum modules, duration estimates ("8–10 weeks", etc.), and
+requirements on `tracks/electrical.html` and `tracks/housekeeping.html` are
+placeholder content**, drafted by Claude at your request since no real
+curriculum content existed yet. They read as plausible and consistent with
+the rest of the site's "indicative, subject to change" framing, but they are
+not real — replace them with actual program details before this goes live
+for real applicants, the same way the Sinhala translation needs review (see
+below).
+
+Only `index.html`'s cards link to these pages — `index-si.html`'s cards are
+intentionally left non-clickable for now, since the track pages only exist in
+English; linking a Sinhala card to an English page would be a confusing
+language switch mid-flow.
 
 ## Deployment
 

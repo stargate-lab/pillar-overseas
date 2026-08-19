@@ -128,13 +128,15 @@ section{padding:88px 0;}
   background-size:cover; background-position:center;
 }
 .track-media-overlay{
-  position:absolute; inset:0;
+  position:absolute; inset:0; transition:opacity .15s ease;
   background:linear-gradient(0deg,
     rgba(0,0,0,.9) 0%,
     rgba(0,20,40,.78) 22%,
     rgba(0,88,150,.4) 48%,
     rgba(0,88,150,0) 82%);
 }
+.track-link{display:block;}
+.track-link:hover .track-media-overlay, .track-link:focus-visible .track-media-overlay{opacity:.82;}
 .track-content{position:absolute; left:0; right:0; bottom:0; padding:16px; color:#fff;}
 .track-content .tag{
   display:inline-block; font-size:10.5px; font-weight:600; color:#BFD9F0;

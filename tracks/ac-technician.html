@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AC Technician — Coming Soon — Pillar Overseas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo"><img src="../assets/pillar-icon-mark.png" alt="Pillar Overseas">PILLAR OVERSEAS</div>
+    <div class="navlinks">
+      <a href="../index.html#program">Program</a>
+      <a href="../index.html#how">How it works</a>
+      <a href="../index.html#fees">Fees</a>
+      <a href="../index.html#faq">FAQs</a>
+    </div>
+    <div class="navctas">
+      <a class="wa-nav" href="https://wa.me/94770000000" data-whatsapp-link target="_blank" rel="noopener">WhatsApp Us</a>
+      <a class="btn btn-primary" href="#reserve" data-open-reserve>Reserve a Seat</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" style="padding:64px 0 80px;">
+    <div class="wrap hero-inner">
+      <a class="link link-invert" href="../index.html#program" style="margin-bottom:24px;">&larr; Back to Pillar Overseas</a>
+      <span class="hero-label"><b>Coming Soon</b> — not yet part of Cohort 01</span>
+      <h1 style="font-size:38px;">AC Technician</h1>
+      <p class="lead">This track is in development as Cohort 01 grows. Curriculum, duration, and requirements will be published here once finalized.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="../index.html#program">See Tracks Open Now</a>
+        <a class="link link-invert" href="https://wa.me/94770000000" data-whatsapp-link target="_blank" rel="noopener">WhatsApp Us</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="modal-overlay" id="reserveModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button>
+
+    <div id="modalFormView">
+      <div class="overline">Cohort 01 — limited seats</div>
+      <h2 id="modalTitle">Reserve your seat</h2>
+      <p class="modal-lead">Tell us a bit about yourself. We'll follow up on WhatsApp within 2 hours to confirm your assessment call — no payment needed at this stage.</p>
+
+      <form id="reserveForm" name="reserve" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="reserve">
+        <p style="display:none;">
+          <label>Leave this field blank: <input name="bot-field"></label>
+        </p>
+        <div class="form-error-summary" id="formErrorSummary" role="alert"></div>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" placeholder="e.g. Nimal Perera" required>
+          <span class="error-msg">Please enter your full name.</span>
+        </div>
+        <div class="field">
+          <label for="phone">WhatsApp number</label>
+          <input id="phone" name="phone" type="tel" placeholder="07X XXX XXXX" required>
+          <span class="error-msg">Enter a valid WhatsApp number, e.g. 07X XXX XXXX.</span>
+        </div>
+        <div class="field">
+          <label for="district">District</label>
+          <input id="district" name="district" type="text" placeholder="e.g. Kurunegala" required>
+          <span class="error-msg">Please enter your district.</span>
+        </div>
+        <div class="field">
+          <label for="nic">NIC number</label>
+          <input id="nic" name="nic" type="text" placeholder="e.g. 200012345678 or 991234567V" required>
+          <span class="error-msg">Enter a valid Sri Lankan NIC number.</span>
+        </div>
+        <div class="field">
+          <label for="track">Track</label>
+          <select id="track" name="track" required>
+            <option value="">Select a track</option>
+            <option value="Electrical">Electrical Trades</option>
+            <option value="Housekeeping">Hospitality &amp; Housekeeping</option>
+            <option value="Not sure">Not sure yet</option>
+          </select>
+          <span class="error-msg">Please select a track.</span>
+        </div>
+        <div class="field full">
+          <button type="submit" class="btn btn-primary">
+            <span class="spinner" aria-hidden="true"></span>
+            <span class="btn-label">Reserve My Seat</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="modalSuccessView" hidden>
+      <div class="modal-success-mark">&#10003;</div>
+      <h2 id="modalSuccessTitle">Thanks!</h2>
+      <p>We've got your details — we'll follow up on WhatsApp within 2 hours to confirm your assessment call.</p>
+      <button type="button" class="btn btn-primary" id="modalDoneBtn">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="disclaimer">
+  Pillar Overseas Education and Foreign Employment is currently in a market validation stage. Program details, dates, and fees shown here are indicative and subject to change before enrollment formally opens.
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col foot-brand">
+        <div class="logo"><img src="../assets/pillar-icon-mark.png" alt="Pillar Overseas">PILLAR OVERSEAS</div>
+        <p>Training and placement pathway from Kurunegala, Sri Lanka to Dubai, UAE.</p>
+        <div class="foot-parent">
+          <span>Part of</span>
+          <img src="../assets/group-ten-global-logo-on-dark.png" alt="Group Ten Global">
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Program</h5>
+        <a href="electrical.html">Electrical Trades</a>
+        <a href="housekeeping.html">Hospitality &amp; Housekeeping</a>
+        <a href="../index.html#how">How it works</a>
+        <a href="../index.html#fees">Fees</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="../index.html#faq">FAQs</a>
+      </div>
+      <div class="foot-col">
+        <h5>Get in Touch</h5>
+        <a href="https://wa.me/94770000000" data-whatsapp-link target="_blank" rel="noopener">WhatsApp Us</a>
+        <a href="mailto:hello@pillaroverseas.com">hello@pillaroverseas.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 Pillar Overseas, operated by Group Ten Global. All rights reserved.</div>
+      <div>Kurunegala, Sri Lanka · Dubai, UAE</div>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/config.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
