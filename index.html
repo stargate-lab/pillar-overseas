@@ -22,7 +22,7 @@
     </div>
     <div class="navctas">
       <a class="wa-nav" href="https://wa.me/94770000000" data-whatsapp-link target="_blank" rel="noopener">WhatsApp Us</a>
-      <a class="btn btn-primary" href="#reserve">Reserve a Seat</a>
+      <a class="btn btn-primary" href="#reserve" data-open-reserve>Reserve a Seat</a>
     </div>
   </nav>
 </header>
@@ -38,7 +38,7 @@
       <h1>Trained in Sri Lanka. Working in Dubai.</h1>
       <p class="lead">Pillar Overseas prepares electricians and hospitality staff with NVQ-aligned certification and a structured pathway toward employer interviews in the UAE.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="#reserve">Reserve Your Seat</a>
+        <a class="btn btn-primary" href="#reserve" data-open-reserve>Reserve Your Seat</a>
         <a class="link link-invert" href="https://wa.me/94770000000" data-whatsapp-link target="_blank" rel="noopener">WhatsApp Us</a>
       </div>
       <div class="trustline">
@@ -58,45 +58,45 @@
       </div>
       <div class="offers">
         <div class="track-card">
-          <div class="track-media" style="--track-img:url('assets/tracks/electrical.jpg')">
+          <div class="track-media" style="--track-img:url('../assets/tracks/electrical.jpg')">
             <div class="track-media-overlay"></div>
             <div class="track-content">
               <span class="tag">Track A</span>
               <h3>Electrical Trades</h3>
-              <p>Domestic &amp; commercial wiring, panel and circuit standards, site-ready practical assessment — aligned to facilities and MEP employer needs.</p>
+              <p>Wiring, panel &amp; circuit standards, site-ready practical assessment.</p>
             </div>
           </div>
-          <a class="track-cta" href="#reserve">Reserve this track</a>
+          <a class="track-cta" href="#reserve" data-open-reserve data-track="Electrical">Reserve this track</a>
         </div>
         <div class="track-card">
-          <div class="track-media" style="--track-img:url('assets/tracks/housekeeping.jpg')">
+          <div class="track-media" style="--track-img:url('../assets/tracks/housekeeping.jpg')">
             <div class="track-media-overlay"></div>
             <div class="track-content">
               <span class="tag">Track B</span>
               <h3>Hospitality &amp; Housekeeping</h3>
-              <p>Five-star housekeeping standards, guest service basics, equipment and chemical safety — aligned to hotel employer needs.</p>
+              <p>Five-star housekeeping standards &amp; guest service basics.</p>
             </div>
           </div>
-          <a class="track-cta" href="#reserve">Reserve this track</a>
+          <a class="track-cta" href="#reserve" data-open-reserve data-track="Housekeeping">Reserve this track</a>
         </div>
         <div class="track-card coming-soon">
-          <div class="track-media" style="--track-img:url('assets/tracks/plumbing.jpg')">
+          <div class="track-media" style="--track-img:url('../assets/tracks/plumbing.jpg')">
             <div class="track-media-overlay"></div>
             <div class="track-content">
               <span class="tag">Coming Soon</span>
               <h3>Plumbing</h3>
-              <p>Track curriculum in development — being finalized as Cohort 01 expands.</p>
+              <p>Curriculum in development.</p>
             </div>
           </div>
           <span class="track-cta disabled">Coming Soon</span>
         </div>
         <div class="track-card coming-soon">
-          <div class="track-media" style="--track-img:url('assets/tracks/ac-technician.jpg')">
+          <div class="track-media" style="--track-img:url('../assets/tracks/ac-technician.jpg')">
             <div class="track-media-overlay"></div>
             <div class="track-content">
               <span class="tag">Coming Soon</span>
               <h3>AC Technician</h3>
-              <p>Track curriculum in development — being finalized as Cohort 01 expands.</p>
+              <p>Curriculum in development.</p>
             </div>
           </div>
           <span class="track-cta disabled">Coming Soon</span>
@@ -246,60 +246,71 @@
       <h2>Ready to reserve your seat?</h2>
       <p>Register in under a minute. We'll follow up on WhatsApp to confirm your assessment call.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="#reserve">Reserve Your Seat</a>
+        <a class="btn btn-primary" href="#reserve" data-open-reserve>Reserve Your Seat</a>
         <a class="link link-invert" href="https://wa.me/94770000000" data-whatsapp-link target="_blank" rel="noopener">WhatsApp Us</a>
       </div>
     </div>
   </section>
 
-  <div class="wrap">
-    <section id="reserve">
-      <div class="reserve-shell">
-        <div>
-          <div class="overline">Cohort 01 — limited seats</div>
-          <h2 style="font-size:28px; margin-bottom:16px;">Reserve your seat</h2>
-          <p style="color:var(--muted); font-size:15px; max-width:40ch;">Tell us a bit about yourself. We'll follow up on WhatsApp within 2 hours to confirm your assessment call — no payment needed at this stage.</p>
-        </div>
-        <form id="reserveForm" novalidate>
-          <div class="form-error-summary" id="formErrorSummary" role="alert"></div>
-          <div class="field">
-            <label for="name">Full name</label>
-            <input id="name" name="name" type="text" placeholder="e.g. Nimal Perera" required>
-            <span class="error-msg">Please enter your full name.</span>
-          </div>
-          <div class="field">
-            <label for="phone">WhatsApp number</label>
-            <input id="phone" name="phone" type="tel" placeholder="07X XXX XXXX" required>
-            <span class="error-msg">Enter a valid WhatsApp number, e.g. 07X XXX XXXX.</span>
-          </div>
-          <div class="field">
-            <label for="district">District</label>
-            <input id="district" name="district" type="text" placeholder="e.g. Kurunegala" required>
-            <span class="error-msg">Please enter your district.</span>
-          </div>
-          <div class="field">
-            <label for="track">Track</label>
-            <select id="track" name="track" required>
-              <option value="">Select a track</option>
-              <option value="Electrical">Electrical Trades</option>
-              <option value="Housekeeping">Hospitality &amp; Housekeeping</option>
-              <option value="Not sure">Not sure yet</option>
-            </select>
-            <span class="error-msg">Please select a track.</span>
-          </div>
-          <div class="field full">
-            <button type="submit" class="btn btn-primary">
-              <span class="spinner" aria-hidden="true"></span>
-              <span class="btn-label">Continue on WhatsApp →</span>
-            </button>
-            <div class="form-success" id="formSuccess" role="status">Opening WhatsApp in a new tab — if it didn't open, check your pop-up blocker.</div>
-            <div class="formnote">You'll be redirected to WhatsApp to confirm your details with our team directly.</div>
-          </div>
-        </form>
-      </div>
-    </section>
-  </div>
 </main>
+
+<div class="modal-overlay" id="reserveModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close">&times;</button>
+
+    <div id="modalFormView">
+      <div class="overline">Cohort 01 — limited seats</div>
+      <h2 id="modalTitle">Reserve your seat</h2>
+      <p class="modal-lead">Tell us a bit about yourself. We'll follow up on WhatsApp within 2 hours to confirm your assessment call — no payment needed at this stage.</p>
+
+      <form id="reserveForm" name="reserve" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="reserve">
+        <p style="display:none;">
+          <label>Leave this field blank: <input name="bot-field"></label>
+        </p>
+        <div class="form-error-summary" id="formErrorSummary" role="alert"></div>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" placeholder="e.g. Nimal Perera" required>
+          <span class="error-msg">Please enter your full name.</span>
+        </div>
+        <div class="field">
+          <label for="phone">WhatsApp number</label>
+          <input id="phone" name="phone" type="tel" placeholder="07X XXX XXXX" required>
+          <span class="error-msg">Enter a valid WhatsApp number, e.g. 07X XXX XXXX.</span>
+        </div>
+        <div class="field">
+          <label for="district">District</label>
+          <input id="district" name="district" type="text" placeholder="e.g. Kurunegala" required>
+          <span class="error-msg">Please enter your district.</span>
+        </div>
+        <div class="field">
+          <label for="track">Track</label>
+          <select id="track" name="track" required>
+            <option value="">Select a track</option>
+            <option value="Electrical">Electrical Trades</option>
+            <option value="Housekeeping">Hospitality &amp; Housekeeping</option>
+            <option value="Not sure">Not sure yet</option>
+          </select>
+          <span class="error-msg">Please select a track.</span>
+        </div>
+        <div class="field full">
+          <button type="submit" class="btn btn-primary">
+            <span class="spinner" aria-hidden="true"></span>
+            <span class="btn-label">Reserve My Seat</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="modalSuccessView" hidden>
+      <div class="modal-success-mark">&#10003;</div>
+      <h2 id="modalSuccessTitle">Thanks!</h2>
+      <p>We've got your details — we'll follow up on WhatsApp within 2 hours to confirm your assessment call.</p>
+      <button type="button" class="btn btn-primary" id="modalDoneBtn">Close</button>
+    </div>
+  </div>
+</div>
 
 <div class="disclaimer">
   Pillar Overseas Education and Foreign Employment is currently in a market validation stage. Program details, dates, and fees shown here are indicative and subject to change before enrollment formally opens.

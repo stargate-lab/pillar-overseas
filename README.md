@@ -9,9 +9,10 @@ no framework.
 ```
 index.html        Page markup
 css/style.css      All styles
-js/config.js       Site-wide settings (WhatsApp number)
-js/main.js         WhatsApp link wiring + reserve-form validation
-assets/            Logo files (see "Brand assets" below)
+js/config.js       Site-wide settings (WhatsApp number, lead sheet URL)
+js/main.js         WhatsApp link wiring + reserve-form validation + lead save
+assets/            Logo, track, and video files (see "Brand assets" below)
+apps-script/       Google Apps Script source for the lead-capture sheet
 netlify.toml       Netlify static-hosting config
 package.json       Dev-server script only (no runtime dependencies)
 ```
@@ -67,6 +68,31 @@ track before building the WhatsApp deep link. Invalid fields get inline error
 messages and a red outline; the submit button shows a spinner and "Redirecting…"
 while the WhatsApp tab opens, then re-enables itself.
 
+## Lead capture
+
+Every valid submission saves to **Netlify Forms** in addition to opening
+WhatsApp — no backend, no third-party account, works the moment the site is
+deployed on Netlify. `index.html`'s `<form>` carries the required
+`data-netlify="true"` / `name="reserve"` / hidden `form-name` attributes, and
+`js/main.js` (`saveLeadToNetlify`) submits to it via the AJAX pattern Netlify's
+docs require, since the form's own submit is intercepted for validation and
+the WhatsApp redirect. A hidden honeypot field (`bot-field`) filters spam.
+
+Submissions show up under **Site → Forms** in the Netlify dashboard (free tier:
+100/month), exportable as CSV, with optional email notifications per submission.
+**Only works once actually deployed on Netlify** — it silently no-ops in local
+dev (`npm run dev`) and on other hosts, same fire-and-forget/fail-safe pattern
+as everything else here: it can't block or break the WhatsApp flow.
+
+**Parked alternative — Google Sheet via Apps Script:** `apps-script/Code.gs`
+still exists for this and works the same way (set `leadSheetUrl` in
+`js/config.js`), but the `stargatebs.com` Google Workspace blocks public
+("Anyone") Apps Script web app deployments at the org level, so this needs
+either a personal (non-Workspace) Google account or a Workspace admin enabling
+"Let users publish web apps that can be accessed by anyone" under Admin
+console → Apps → Google Workspace → Apps Script. Leave `leadSheetUrl` blank
+(the default) to keep this inactive.
+
 ## Deployment
 
 The site is fully static — no build command required on either platform.
@@ -84,10 +110,6 @@ The site is fully static — no build command required on either platform.
 - **Sinhala-language toggle** — plan to externalize copy into a small strings
   object (e.g. `js/i18n.js`) keyed by section, with a toggle that swaps
   `textContent` and persists the choice in `localStorage`.
-- **Real lead-capture backend** — the reserve form currently only opens a
-  WhatsApp deep link (see `js/main.js`). Swapping in a backend means adding a
-  `fetch()` call before (or instead of) `window.open()`, keeping the existing
-  validation and loading-state logic as-is.
 
 ## Content note
 
