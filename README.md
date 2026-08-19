@@ -63,26 +63,30 @@ If you don't want Node installed at all, any static file server works, e.g.
 
 ## Form validation
 
-`js/main.js` validates name, phone (Sri Lankan mobile pattern), district, and
-track before building the WhatsApp deep link. Invalid fields get inline error
-messages and a red outline; the submit button shows a spinner and "Redirecting…"
-while the WhatsApp tab opens, then re-enables itself.
+The reserve form opens as a popup modal (triggered by any element with
+`data-open-reserve`, see `index.html`), pre-selecting a track when opened from
+a track card's `data-track` attribute. `js/main.js` validates name, phone (Sri
+Lankan mobile pattern), district, NIC (old 9-digit+letter or new 12-digit
+format), and track before submitting. Invalid fields get inline error messages
+and a red outline; on success the modal swaps from the form to a "Thanks,
+{name}!" confirmation view with a Close button, and resets back to a fresh
+form the next time it's opened.
 
 ## Lead capture
 
-Every valid submission saves to **Netlify Forms** in addition to opening
-WhatsApp — no backend, no third-party account, works the moment the site is
-deployed on Netlify. `index.html`'s `<form>` carries the required
-`data-netlify="true"` / `name="reserve"` / hidden `form-name` attributes, and
-`js/main.js` (`saveLeadToNetlify`) submits to it via the AJAX pattern Netlify's
-docs require, since the form's own submit is intercepted for validation and
-the WhatsApp redirect. A hidden honeypot field (`bot-field`) filters spam.
+Every valid submission saves to **Netlify Forms** — no backend, no
+third-party account, works the moment the site is deployed on Netlify.
+`index.html`'s `<form>` carries the required `data-netlify="true"` /
+`name="reserve"` / hidden `form-name` attributes, and `js/main.js`
+(`saveLeadToNetlify`) submits to it via the AJAX pattern Netlify's docs
+require, since the form's own submit is intercepted for validation and the
+success-view swap. A hidden honeypot field (`bot-field`) filters spam.
 
 Submissions show up under **Site → Forms** in the Netlify dashboard (free tier:
 100/month), exportable as CSV, with optional email notifications per submission.
 **Only works once actually deployed on Netlify** — it silently no-ops in local
 dev (`npm run dev`) and on other hosts, same fire-and-forget/fail-safe pattern
-as everything else here: it can't block or break the WhatsApp flow.
+as everything else here: it can't block or break the rest of the form flow.
 
 **Parked alternative — Google Sheet via Apps Script:** `apps-script/Code.gs`
 still exists for this and works the same way (set `leadSheetUrl` in
@@ -105,11 +109,31 @@ The site is fully static — no build command required on either platform.
 - Connect the repo, or run `vercel --prod` from this directory.
 - Vercel auto-detects a static `index.html` at the root; no config file needed.
 
-## Next steps (not yet built)
+## Sinhala translation
 
-- **Sinhala-language toggle** — plan to externalize copy into a small strings
-  object (e.g. `js/i18n.js`) keyed by section, with a toggle that swaps
-  `textContent` and persists the choice in `localStorage`.
+`index-si.html` is a full Sinhala translation of `index.html` — a separate
+page/URL rather than a client-side toggle, so each language is independently
+indexable by search engines (`<link rel="alternate" hreflang>` tags point each
+page at the other) and gets a correct `lang="si"` / `lang="en"` attribute. It
+shares `css/style.css` and `js/main.js` with the English page — no duplicated
+code, only duplicated copy. A "සිංහල" / "English" link in the nav switches
+between them.
+
+Two things to know:
+- **Font**: Inter has no Sinhala glyphs, so `index-si.html` additionally loads
+  Noto Sans Sinhala from Google Fonts; `css/style.css` layers it in for
+  Sinhala pages only via an `html[lang="si"] body{...}` rule.
+- **JS-generated strings**: almost all copy lives in the HTML (translate it
+  there), but `js/main.js` itself generates two strings at runtime (the "fix
+  the highlighted fields" error and the "Thanks, {name}!" success title) — the
+  `STRINGS`/`T` object near the top of that file holds both languages, keyed
+  off `document.documentElement.lang`.
+
+**⚠️ This translation has not been reviewed by a Sinhala speaker.** It was
+drafted by Claude and needs review before going live — especially the FAQ,
+fee, and "no guaranteed job" sections in `index-si.html`, which restate the
+same legally/ethically sensitive claims as the English copy (see "Content
+note" below) and must carry the same meaning exactly, not just read fluently.
 
 ## Content note
 

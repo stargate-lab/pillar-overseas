@@ -3,7 +3,7 @@
  *
  * Setup:
  * 1. Create a Google Sheet with a header row:
- *    Timestamp | Name | Phone | District | Track
+ *    Timestamp | Name | Phone | District | NIC | Track
  * 2. In the Sheet: Extensions -> Apps Script, paste this file's contents in as Code.gs.
  * 3. Deploy -> New deployment -> Web app.
  *    - Execute as: Me
@@ -20,6 +20,7 @@ function doPost(e) {
     params.name || '',
     params.phone || '',
     params.district || '',
+    params.nic || '',
     params.track || ''
   ]);
 

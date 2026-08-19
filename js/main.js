@@ -2,6 +2,22 @@
   var WHATSAPP_NUMBER = window.PILLAR_CONFIG.whatsappNumber;
   var LEAD_SHEET_URL = window.PILLAR_CONFIG.leadSheetUrl;
 
+  // The rest of the page's copy lives per-language in index.html / index-si.html
+  // directly (see README "Sinhala translation"). These two strings are the only
+  // ones this shared script generates itself, so they're the only ones that
+  // need a translation lookup here, keyed off <html lang="...">.
+  var STRINGS = {
+    en: {
+      fixErrors: 'Please fix the highlighted fields before continuing.',
+      thanks: function (name) { return 'Thanks, ' + name + '!'; }
+    },
+    si: {
+      fixErrors: 'කරුණාකර ඉදිරියට යාමට පෙර සලකුණු කර ඇති ක්ෂේත්‍ර නිවැරදි කරන්න.',
+      thanks: function (name) { return 'ස්තූතියි, ' + name + '!'; }
+    }
+  };
+  var T = STRINGS[document.documentElement.lang] || STRINGS.en;
+
   // Fire-and-forget save to the Google Sheet lead log (see apps-script/Code.gs).
   // no-cors + form-encoded body avoids a CORS preflight, which Apps Script doesn't
   // handle; we don't need to read the response, just get the row saved.
@@ -113,6 +129,12 @@
       validate: function (v) { return v.trim().length >= 2; },
       message: 'Please enter your district.'
     },
+    nic: {
+      el: document.getElementById('nic'),
+      // Sri Lankan NIC: old format is 9 digits + V/X, new format is 12 digits.
+      validate: function (v) { return /^(?:[0-9]{9}[vVxX]|[0-9]{12})$/.test(v.trim()); },
+      message: 'Enter a valid Sri Lankan NIC number.'
+    },
     track: {
       el: document.getElementById('track'),
       validate: function (v) { return v !== ''; },
@@ -156,7 +178,7 @@
     e.preventDefault();
 
     if (!validateAll()) {
-      errorSummary.textContent = 'Please fix the highlighted fields before continuing.';
+      errorSummary.textContent = T.fixErrors;
       errorSummary.classList.add('visible');
       var firstInvalid = form.querySelector('.field.invalid input, .field.invalid select');
       if (firstInvalid) firstInvalid.focus();
@@ -169,12 +191,13 @@
     var name = fields.name.el.value.trim();
     var phone = fields.phone.el.value.trim();
     var district = fields.district.el.value.trim();
+    var nic = fields.nic.el.value.trim();
     var track = fields.track.el.value;
 
-    saveLead({ name: name, phone: phone, district: district, track: track });
-    saveLeadToNetlify({ name: name, phone: phone, district: district, track: track });
+    saveLead({ name: name, phone: phone, district: district, nic: nic, track: track });
+    saveLeadToNetlify({ name: name, phone: phone, district: district, nic: nic, track: track });
 
-    modalSuccessTitle.textContent = 'Thanks, ' + name + '!';
+    modalSuccessTitle.textContent = T.thanks(name);
     modalFormView.hidden = true;
     modalSuccessView.hidden = false;
     var doneBtn = document.getElementById('modalDoneBtn');
