@@ -1,0 +1,13 @@
+{
+  "name": "pillar-landing-page",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pillar Overseas Education and Foreign Employment - landing page (market validation)",
+  "scripts": {
+    "dev": "live-server --port=5500 --open=/index.html",
+    "start": "npm run dev"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
